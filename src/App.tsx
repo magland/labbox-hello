@@ -1,24 +1,24 @@
+import { usePlugins } from 'labbox';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { HelloPlugin } from './extensions/pluginInterface';
 
 function App() {
+  const plugins = usePlugins<HelloPlugin>()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Plugin views:</h2>
+      {
+        plugins.map(p => (
+          <div style={{border: 'solid 1px black'}}>
+            <h3>Type: {p.type}</h3>
+            <h3>Name: {p.name}</h3>
+            <h3>Label: {p.label}</h3>
+            <p.component
+              text="Testing"
+            />
+          </div>
+        ))
+      }
     </div>
   );
 }
